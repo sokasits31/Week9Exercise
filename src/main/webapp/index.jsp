@@ -4,8 +4,8 @@
 
 <h3>Services Links:</h3>
 <Ul>
-    <li><a href="services/getUsers">Click Here to get all users</a></li>
-    <li><a href="services/getUserById/13">Click Here to get User.Id = 13</a></li>
+    <li><a href="services/users">Click Here to get all users</a></li>
+    <li><a href="services/users/13">Click Here to get User.Id = 13</a></li>
 </Ul>
 </body>
 </html>

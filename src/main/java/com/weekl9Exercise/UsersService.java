@@ -11,10 +11,10 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path("/getUsers")
-public class AllUsersService {
+@Path("/users")
+public class UsersService {
     // The Java method will process HTTP GET requests
-    @GET ()
+    @GET
     // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/html")
     public Response getAllUsers() {
@@ -29,6 +29,23 @@ public class AllUsersService {
             results = results + "<br><H3>" + user.getId() + ":" + user.getEmailAddress() +
                       "... " + user.getFirstName() + " " + user.getLastName() + "</h3>";
         }
+
+        return Response.status(200).entity(results).build();
+    }
+
+    @GET
+    @Path("{id}")
+    // The Java method will produce content identified by the MIME Media type "text/plain"
+    @Produces("text/html")
+    public Response getUser(
+            @PathParam("id") int id) {
+        // Return a simple message
+        GenericDao genericDao = new GenericDao(User.class);
+
+        User user = (User) genericDao.getById(id);
+
+        String results = "<H3>" + user.getId() + ":" + user.getEmailAddress() +
+                "... " + user.getFirstName() + " " + user.getLastName() + "</h3>";
 
         return Response.status(200).entity(results).build();
     }

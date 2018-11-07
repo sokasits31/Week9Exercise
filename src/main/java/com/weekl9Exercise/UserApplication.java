@@ -15,7 +15,7 @@ public class UserApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
-        h.add(AllUsersService.class );
+        h.add(UsersService.class );
         return h;
     }
 }
