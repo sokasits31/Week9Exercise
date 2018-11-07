@@ -42,8 +42,6 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<TestScore> testScores = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
@@ -209,43 +207,9 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    /**
-     * Gets test scores.
-     *
-     * @return the test scores
-     */
-    public Set<TestScore> getTestScores() {
-        return testScores;
-    }
 
-    /**
-     * Sets test scores.
-     *
-     * @param testScores the test scores
-     */
-    public void setTestScores(Set<TestScore> testScores) {
-        this.testScores = testScores;
-    }
 
-    /**
-     * Add Test Score.
-     *
-     * @param testScore the test score
-     */
-    public void addTestScore(TestScore testScore) {
-        testScores.add(testScore);
-        testScore.setUser(this);
-    }
 
-    /**
-     * Remove Test Score.
-     *
-     * @param testScore the test score
-     */
-    public void removeTestScore(TestScore testScore) {
-        testScores.remove(testScore);
-        testScore.setUser(null);
-    }
 
     /**
      * Gets roles.
@@ -327,7 +291,6 @@ public class User {
                 ", primaryPhoneNumber=" + primaryPhoneNumber +
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
-                ", testScores=" + testScores +
                 ", roles=" + roles +
                 '}';
     }
