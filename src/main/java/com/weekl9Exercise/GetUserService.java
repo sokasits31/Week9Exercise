@@ -11,24 +11,21 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path("/getUsers")
-public class AllUsersService {
+@Path("/getUserById")
+public class GetUserService {
     // The Java method will process HTTP GET requests
-    @GET ()
+    @GET
+    @Path("{id}")
     // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces("text/html")
-    public Response getAllUsers() {
+    public Response getUser(@PathParam("id") int id) {
         // Return a simple message
         GenericDao genericDao = new GenericDao(User.class);
 
-        String results = "";
+        User user = (User) genericDao.getById(id);
 
-        List<User> users = genericDao.getAll();
-
-        for(User user:users) {
-            results = results + "<br><H3>" + user.getId() + ":" + user.getEmailAddress() +
+        String results = "<H3>" + user.getId() + ":" + user.getEmailAddress() +
                       "... " + user.getFirstName() + " " + user.getLastName() + "</h3>";
-        }
 
         return Response.status(200).entity(results).build();
     }
